@@ -91,7 +91,9 @@ button:hover {
 #contador {
     background-color: red;
     position: absolute;
-    font-size: .7em;
+    width: 1.5em;
+    text-align: center;
+    font-size: .6em;
     color: #d1dfe9;
     border-radius: 50%;
 

@@ -43,5 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
         
     }
 
-localStorage.clear();    
+    const botonEnviar = document.getElementById('botonEnviar');
+   
+    if (botonEnviar) {
+        botonEnviar.addEventListener('click', enviarFormulario);
+        localStorage.removeItem("carrito");
+        localStorage.clear()
+    } else {
+        console.warn("ADVERTENCIA: No se encontró el botón con ID 'botonEnviar'.");
+    }
+    
 });

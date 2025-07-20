@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    const productos = JSON.parse(sessionStorage.getItem('productos')) || [];
-    const total = sessionStorage.getItem('total') || 0;
+    const productos = JSON.parse(localStorage.getItem('productos')) || [];
+    const total = localStorage.getItem('total') || 0;
     const totalNumerico = parseFloat(total) || 0;
-    const totalFormateado = totalNumerico.toFixed(3);
+    const totalFormateado = totalNumerico.toFixed(2);
 
     const resumenDiv = document.getElementById("detalle");
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (let i = 0; i < productos.length; i++) {
         const productoActual = productos[i]; 
-        resumenTextoHTML += `- ${productoActual.nombre}: $${parseFloat(productoActual.precio).toFixed(3)}<br>`;
+        resumenTextoHTML += `- ${productoActual.nombre}: $${parseFloat(productoActual.precio).toFixed(2)}<br>`;
     }
 
     resumenTextoHTML += `<br><strong>Total a pagar: $${totalFormateado}</strong>`;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let detallesCarritoParaEnvio = '';
         for (let i = 0; i < productos.length; i++) {
             const productoActual = productos[i];
-            detallesCarritoParaEnvio += `${productoActual.nombre} - $${parseFloat(productoActual.precio).toFixed(3)}\n`;
+            detallesCarritoParaEnvio += `${productoActual.nombre} - $${parseFloat(productoActual.precio).toFixed(2)}\n`;
         }
 
         document.getElementById('carritoData').value = detallesCarritoParaEnvio;
@@ -40,15 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Enviar el formulario
         document.getElementById('formulario').submit();
+        
     }
 
-    const botonEnviar = document.getElementById('botonEnviar');
-   
-    if (botonEnviar) {
-        botonEnviar.addEventListener('click', enviarFormulario);
-        localStorage.removeItem("carrito");
-        sessionStorage.clear()
-    } else {
-        console.warn("ADVERTENCIA: No se encontró el botón con ID 'botonEnviar'.");
-    }
+localStorage.clear();    
 });

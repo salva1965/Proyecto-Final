@@ -12,10 +12,11 @@ function incrementar() {
    }
 // Vacía carrito
 document.getElementById('vaciar-carrito').addEventListener('click', function() {
-     localStorage.removeItem('carrito');
-     cargarCarrito();
+     
      Contador = 0;
      ContadorElemento.textContent = Contador;
+     localStorage.removeItem("carrito");
+     cargarCarrito();
 });
 
 // Agrega productos al carrito
@@ -50,7 +51,7 @@ function cargarCarrito() {
         total += parseFloat(producto.precio) || 0;
     }
     // Mostrar el total redondeado a 3 decimales
-    totalCarrito.textContent = total.toFixed(3);
+    totalCarrito.textContent = total.toFixed(2);
 }
 
 function pagar() {
@@ -67,10 +68,10 @@ function pagar() {
     }
 
     // Guardar datos en sessionStorage
-    sessionStorage.setItem('productos', JSON.stringify(carrito));
-    sessionStorage.setItem('total', total.toFixed(3));
+    localStorage.setItem('productos', JSON.stringify(carrito));
+    localStorage.setItem('total', total.toFixed(2));
 
-    alert(`Total a pagar: $${total.toFixed(3)}`);
+    alert(`Total a pagar: $${total.toFixed(2)}`);
     window.location.href = "compra.html";
 }
 

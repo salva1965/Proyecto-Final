@@ -3,7 +3,9 @@ let Contador = 0;
 let botonesComprar = document.getElementsByClassName('comprar');
 const ContadorElemento = document.getElementById("contador");
 function incrementar() {
+    
     Contador++;
+    
     ContadorElemento.textContent = Contador;
 }
 
@@ -16,6 +18,7 @@ document.getElementById('vaciar-carrito').addEventListener('click', function() {
      Contador = 0;
      ContadorElemento.textContent = Contador;
      localStorage.removeItem("carrito");
+     localStorage.clear();
      cargarCarrito();
 });
 
@@ -67,7 +70,7 @@ function pagar() {
         total += parseFloat(carrito[i].precio) || 0;
     }
 
-    // Guardar datos en sessionStorage
+    
     localStorage.setItem('productos', JSON.stringify(carrito));
     localStorage.setItem('total', total.toFixed(2));
 

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
+
     const productos = JSON.parse(localStorage.getItem('productos')) || [];
     const total = localStorage.getItem('total') || 0;
     const totalNumerico = parseFloat(total) || 0;
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let resumenTextoHTML = "<h3>Resumen de tu Compra:</h3><br>";
 
     for (let i = 0; i < productos.length; i++) {
-        const productoActual = productos[i]; 
+        const productoActual = productos[i];
         resumenTextoHTML += `- ${productoActual.nombre}: $${parseFloat(productoActual.precio).toFixed(2)}<br>`;
     }
 
@@ -18,8 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     resumenDiv.innerHTML = resumenTextoHTML;
 
     function enviarFormulario(event) {
-        event.preventDefault();
-
+        
         const nombreContacto = document.getElementById('nombre').value.trim();
         const emailContacto = document.getElementById('contactoEmail').value.trim();
         const telefonoContacto = document.getElementById('telefono').value.trim();
@@ -37,20 +36,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById('carritoData').value = detallesCarritoParaEnvio;
         document.getElementById('totalCarrito').value = `$${totalFormateado}`;
-        
+
         // Enviar el formulario
         document.getElementById('formulario').submit();
-        
-    }
+        if (botonEnviar) {
+            localStorage.removeItem("carrito");
+            localStorage.clear()
+        }
 
-    const botonEnviar = document.getElementById('botonEnviar');
-   
-    if (botonEnviar) {
-        botonEnviar.addEventListener('click', enviarFormulario);
-        localStorage.removeItem("carrito");
-        localStorage.clear()
-    } else {
-        console.warn("ADVERTENCIA: No se encontró el botón con ID 'botonEnviar'.");
     }
-    
+    const botonEnviar = document.getElementById('botonEnviar');
+
+    botonEnviar.addEventListener('click', function () {
+        enviarFormulario();
+        
+    })
+   
+
+
+
 });
+ 

@@ -1,13 +1,26 @@
 // Asigna evento clic a todos los botones con la clase "comprar" del HTML
-let Contador = 0;
+let contador = 0;
 let botonesComprar = document.getElementsByClassName('comprar');
 const ContadorElemento = document.getElementById("contador");
+document.addEventListener("DOMContentLoaded", () => {
+  let nombreGuardado = localStorage.getItem("cc");
+  if (nombreGuardado) {
+    
+    document.getElementById("contador").textContent=nombreGuardado;
+    contador=parseInt(nombreGuardado);
+    cargarCarrito();
+  }
+});
 function incrementar() {
     
-    Contador++;
-    
-    ContadorElemento.textContent = Contador;
-}
+   {contador=contador+1;
+    localStorage.setItem("cc",contador);
+    let tt =localStorage.getItem('cc');
+
+ document.getElementById("contador").textContent=tt;} 
+ 
+ 
+};
 
    for (let i = 0; i < botonesComprar.length; i++) {
      botonesComprar[i].addEventListener('click', agregarProducto);
@@ -15,8 +28,8 @@ function incrementar() {
 // Vacía carrito
 document.getElementById('vaciar-carrito').addEventListener('click', function() {
      
-     Contador = 0;
-     ContadorElemento.textContent = Contador;
+     contador = 0;
+     ContadorElemento.textContent = contador;
      localStorage.removeItem("carrito");
      localStorage.clear();
      cargarCarrito();

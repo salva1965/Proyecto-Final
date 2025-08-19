@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (let i = 0; i < productos.length; i++) {
         const productoActual = productos[i];
-        resumenTextoHTML += `- ${productoActual.nombre}: $${parseFloat(productoActual.precio).toFixed(2)}<br>`;
+        resumenTextoHTML += `- ${productoActual.modelo}--${productoActual.nombre}: $${parseFloat(productoActual.precio).toFixed(2)}<br>`;
     }
 
     resumenTextoHTML += `<br><strong>Total a pagar: $${totalFormateado}</strong>`;
